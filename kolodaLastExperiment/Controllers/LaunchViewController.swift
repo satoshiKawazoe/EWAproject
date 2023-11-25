@@ -95,12 +95,10 @@ class LaunchViewController: UIViewController {
     let defaults = UserDefaults.standard
     var cardDataAndLogic: CardDataAndLogic? ///ほかのViewControllerから送られてくる.
     var launchBrain: LaunchBrain?
-    var defaultLastCardNumber: Int {
-        get {
-            return cardDataAndLogic!.allWordsInTextBook_Data!.count
-        }
-    }
-    
+    var maxLastCardNumber: Int?
+    var savedSelectedLevelNumber: Int?
+    var savedMaxReturnCardsQuantity: Int?
+    var savedUsualLearningCardsQuantity: Int?
     var lastCardNumberHasBeenNeverEditted = true ///いつも〜枚学習するの数値は, lastCardNumberTextField が未編集のとき, のみ initalCardNumberTextField の数値から lastCardNumber を計算しlastCardNumberTextField の数値を書き換える. 「学習を開始する」ボタンが押されてから lastCabrdNumberTextField が未編集のときこの変数は true になる.
     
     
@@ -112,7 +110,35 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        launchBrain = LaunchBrain()
+        maxLastCardNumber = cardDataAndLogic!.allWordsInTextBook_Data!.count
+        if let safeSavedS = defaults.value(forKey: "defaultModeNumber") as? Int {
+            savedSelectedLevelNumber = safeSavedS
+        } else {
+            savedSelectedLevelNumber = 0
+        }
+        if let safeSavedM = defaults.value(forKey: "maxReturnCardQuantity") as? Int {
+            savedMaxReturnCardsQuantity = safeSavedM
+        } else {
+            savedMaxReturnCardsQuantity = 5
+        }
+        if let x = defaults.value(forKey: "usualLearningCardsQuantity") as? Int {
+            if x != 0 {
+                savedUsualLearningCardsQuantity = x
+            } else {
+                savedUsualLearningCardsQuantity = 0
+            }
+        } else { /// userDefaults にデータが入っていないとき
+            savedUsualLearningCardsQuantity = 50
+        }
+        
+        // LaunchBrain構造体を作成
+        // LaunchBrain構造体は学習スタートの許可や入力されていない値を入力するように促すラベルの表示を統括
+        launchBrain = LaunchBrain(ml: maxLastCardNumber!)
+        launchBrain!.i = 1
+        launchBrain!.l = maxLastCardNumber
+        launchBrain!.m = savedMaxReturnCardsQuantity
+        launchBrain!.s = savedSelectedLevelNumber
+        launchBrain!.u = savedUsualLearningCardsQuantity
         ///picker の delegate, dataSource を設定
         modePicker.delegate = self
         modePicker.dataSource = self
@@ -123,41 +149,11 @@ class LaunchViewController: UIViewController {
         lastCardNumberTextField.delegate = self
         maxReturnCardsQuantityTextField.delegate = self
         usualLearningCardsQuantityTextField.delegate = self
-        //二つの picker を初期状態にセットする.
-        if let safeDefaultModeNumber = defaults.value(forKey: "defaultModeNumber") as? Int {
-            modePicker.selectRow(safeDefaultModeNumber, inComponent: 0, animated: false)
-            defaultModePicker.selectRow(safeDefaultModeNumber, inComponent: 0, animated: false)
-        } else {
-            modePicker.selectRow(0, inComponent: 0, animated: false) ///Level.1に設定
-            defaultModePicker.selectRow(0, inComponent: 0, animated: false) ///Level.1に設定
-        }
-        ///「〜枚で復習モードに入る」の前の textField に初期値を書き込む
-        if let m = defaults.value(forKey: "maxReturnCardQuantity") as? Int {
-            maxReturnCardsQuantityTextField.text = String(m)
-        } else {
-            maxReturnCardsQuantityTextField.text = String(5)
-        }
-        
-        ///「いつも〜枚学習する」の textField に初期値を書き込む
-        if let x = defaults.value(forKey: "usualLearningCardsQuantity") as? Int {
-            if x != 0 {
-                print("LVC_ ch1")
-                usualLearningCardsQuantityTextField.text = String(x)
-            } else {
-                print("LVC_ ch2")
-                usualLearningCardsQuantityTextField.text = ""
-            }
-        } else { /// userDefaults にデータが入っていないとき
-///以下の20は usualLearningCardsQuantity の超初期値.
-            if cardDataAndLogic!.allWordsInTextBook_Data!.count <= 50 {
-                print("LVC_ ch3")
-                usualLearningCardsQuantityTextField.text = String(cardDataAndLogic!.allWordsInTextBook_Data!.count)
-            } else {
-                print("LVC_ ch4")
-                usualLearningCardsQuantityTextField.text = String(cardDataAndLogic!.allWordsInTextBook_Data!.count / 2)
-            }
-        }
-        
+        //デフォルト値をもとにtextFieldやpickerを初期状態にする
+        modePicker.selectRow(savedSelectedLevelNumber!, inComponent: 0, animated: false)
+        defaultModePicker.selectRow(savedSelectedLevelNumber!, inComponent: 0, animated: false)
+        maxReturnCardsQuantityTextField.text = String(savedMaxReturnCardsQuantity!)
+        usualLearningCardsQuantityTextField.text = String(savedUsualLearningCardsQuantity!)
         //外観を設定
         makeInitialInterface()
         keyboardBar() ///キーボードの toolBar を作成する.
@@ -182,7 +178,7 @@ extension LaunchViewController: UITextFieldDelegate {
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String
     ) -> Bool {
-        //編集中の textFieldの値はnilとして登録する
+        //編集中の textField の値は LaunchBrain に nil として登録する
         switch textField {
         case initalCardNumberTextFieild:
             launchBrain!.i = nil
@@ -205,6 +201,7 @@ extension LaunchViewController: UITextFieldDelegate {
         switch textField {
         case initalCardNumberTextFieild:
             launchBrain!.i = Int(initalCardNumberTextFieild.text!)
+            initalCardNumberTextField_NoteLabel.text = launchBrain!.alartInitalCardNumberTextFieild()
         case lastCardNumberTextField:
             launchBrain!.l = Int(lastCardNumberTextField.text!)
         case maxReturnCardsQuantityTextField:
@@ -214,137 +211,9 @@ extension LaunchViewController: UITextFieldDelegate {
         default:
             print("Error")
         }
-        
-        
-        print("LVC_ i = \(i), l = \(l), m = \(m), maxL = \(cardDataAndLogic!.allWordsInTextBook_Data!.count)")
-        print("LVC_ textField= \(textField)")
-    // i も l も nil のとき
-        if i == nil && l == nil {
-                ///initalCardNumberTextField_NoteLabel の処理
-                initalCardNumberTextField_NoteLabel.isHidden = false
-                initalCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-                ///lastCardNumberTextField_NoteLabel の処理
-                lastCardNumberTextField_NoteLabel.isHidden = false
-                lastCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-     //i は nil でなく l が nil のとき 要変更！！
-        } else if i != nil && l == nil {
-            // i の値は正しい時
-                if i! >= 1 && i! <= cardDataAndLogic!.allWordsInTextBook_Data!.count {
-                    ///initalCardNumberTextField_NoteLabel の処理
-                    initalCardNumberTextField_NoteLabel.isHidden = true
-                    ///lastCardNumberTextField_NoteLabel の処理
-                    lastCardNumberTextField_NoteLabel.isHidden = false
-                    lastCardNumberTextField_NoteLabel.text = "\(i!)〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-            // i の値が正しくないとき
-                } else {
-                    ///initalCardNumberTextField_NoteLabel の処理
-                    initalCardNumberTextField_NoteLabel.isHidden = false
-                    initalCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)の値を入力して"
-                    ///lastCardNumberTextField_NoteLabel の処理
-                    lastCardNumberTextField_NoteLabel.isHidden = false
-                    lastCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-                }
-
-    // i が nil で l は nil でないとき
-        } else if i == nil && l != nil {
-                ///initalCardNumberTextField_NoteLabel の処理
-                initalCardNumberTextField_NoteLabel.isHidden = false
-                initalCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-            // l の数値が正しいとき
-                if l! >= 1 && l! <= cardDataAndLogic!.allWordsInTextBook_Data!.count {
-                    ///lastCardNumberTextField_NoteLabel の処理
-                    lastCardNumberTextField_NoteLabel.isHidden = true
-            // l の数値が正しくないとき
-                } else {
-                    lastCardNumberTextField_NoteLabel.isHidden = false
-                    lastCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)の数を入力して"
-                }
-    // i も l も nil でない
-        } else {
-            // i の値は正しい時
-                if i! >= 1 && i! <= cardDataAndLogic!.allWordsInTextBook_Data!.count {
-                    ///initalCardNumberTextField_NoteLabel の処理
-                    initalCardNumberTextField_NoteLabel.isHidden = true
-                // l の値は正しいとき
-                    ///usualLearningCardQuantity を使うかを判断
-                    if l! >= i! && l! <= cardDataAndLogic!.allWordsInTextBook_Data!.count {
-                        if textField == initalCardNumberTextFieild &&
-                            lastCardNumberHasBeenNeverEditted == true &&
-                            x != nil && x != 0 {
-                            ///使う場合, 足したものが defaultLastCardNumber を越えないかチェックする
-                            if i! + x! - 1 < defaultLastCardNumber {
-                                lastCardNumberTextField.text = String(i! + x! - 1)
-                            } else {
-                                lastCardNumberTextField.text = String(defaultLastCardNumber)
-                            }
-                        }
-                        ///lastCardNumberTextField_NoteLabel の処理
-                        lastCardNumberTextField_NoteLabel.isHidden = true
-                // l の値が正しくないとき
-                    } else {
-                        ///usualLearningCardQuantity を使うかを判断
-                        if textField == initalCardNumberTextFieild &&
-                            lastCardNumberHasBeenNeverEditted == true &&
-                            x != nil && x != 0 {
-                            ///使う場合, 足したものが defaultLastCardNumber を越えないかチェックする
-                            if i! + x! - 1 < defaultLastCardNumber {
-                                lastCardNumberTextField.text = String(i! + x! - 1)
-                            } else {
-                                lastCardNumberTextField.text = String(defaultLastCardNumber)
-                            }
-                        } else {
-                            lastCardNumberTextField_NoteLabel.isHidden = false
-                            lastCardNumberTextField_NoteLabel.text = "\(i!)〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)の値を代入して！"
-                        }
-                    }
-            // i の値が正しくないとき
-                } else {
-                    ///initalCardNumberTextField_NoteLabel の処理
-                    initalCardNumberTextField_NoteLabel.isHidden = false
-                    initalCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count)"
-                // l の値が正しいとき
-                    if l! >= 1 && l! <= cardDataAndLogic!.allWordsInTextBook_Data!.count {
-                        ///lastCardNumberTextField_NoteLabel の処理
-                        lastCardNumberTextField_NoteLabel.isHidden = true
-                // l の値が正しくないとき
-                    } else {
-                        ///lastCardNumberTextField_NoteLabel の処理
-                        lastCardNumberTextField_NoteLabel.isHidden = false
-                        lastCardNumberTextField_NoteLabel.text = "1〜\(cardDataAndLogic!.allWordsInTextBook_Data!.count) の数を入力して"
-                    }
-                }
-        }
-
-    ///maxReturnCardsQuantityTextField_NoteLabel の処理
-        if m == nil {
-            maxReturnCardsQuantityTextField_NoteLabel.isHidden = false
-            maxReturnCardsQuantityTextField_NoteLabel.text = "1〜の数を入力して！"
-        } else if m! < 1 {
-            maxReturnCardsQuantityTextField_NoteLabel.isHidden = false
-            maxReturnCardsQuantityTextField_NoteLabel.text = "1〜 の数を入力して！"
-        } else {
-            /// maxReturnCardQuantity はここで UserDefault に保存する.
-            defaults.set(m!, forKey: "maxReturnCardQuantity")
-            maxReturnCardsQuantityTextField_NoteLabel.isHidden = true
-        }
-        
-        if x == nil {
-            usualLearningCardQuantityTextField_NoteLabel.isHidden = false
-            usualLearningCardQuantityTextField_NoteLabel.text = "ここの機能は無効化されています"
-            defaults.set(0, forKey: "usualLearningCardsQuantity")
-        } else if x! < 1 {
-            usualLearningCardQuantityTextField_NoteLabel.isHidden = false
-            usualLearningCardQuantityTextField_NoteLabel.text = "ここの機能は無効化されています"
-            defaults.set(0, forKey: "usualLearningCardsQuantity")
-        } else {
-            /// maxReturnCardQuantity はここで UserDefault に保存する.
-            defaults.set(x!, forKey: "usualLearningCardsQuantity")
-            maxReturnCardsQuantityTextField_NoteLabel.isHidden = true
-            usualLearningCardQuantityTextField_NoteLabel.isHidden = true
-        }
-        
         return true
     }
+        
 }
 
 
@@ -431,14 +300,6 @@ extension LaunchViewController {
 extension LaunchViewController {
     
     func makeInitialInterface() {
-        ///「〜番から」の前の textField に初期値を書き込む
-        initalCardNumberTextFieild.text = String(1)
-        lastCardNumberTextField.text = String(defaultLastCardNumber)
-        ///注意書きのラベルを非表示に.
-        initalCardNumberTextField_NoteLabel.isHidden = true
-        lastCardNumberTextField_NoteLabel.isHidden = true
-        maxReturnCardsQuantityTextField_NoteLabel.isHidden = true
-        usualLearningCardQuantityTextField_NoteLabel.isHidden = true
         /// TextField のキーボードを設定.
         initalCardNumberTextFieild.keyboardType = UIKeyboardType.numberPad
         lastCardNumberTextField.keyboardType = UIKeyboardType.numberPad
