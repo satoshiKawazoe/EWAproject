@@ -94,6 +94,7 @@ class LaunchViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     var cardDataAndLogic: CardDataAndLogic? ///ほかのViewControllerから送られてくる.
+    var launchBrain: LaunchBrain?
     var defaultLastCardNumber: Int {
         get {
             return cardDataAndLogic!.allWordsInTextBook_Data!.count
@@ -110,6 +111,8 @@ class LaunchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        launchBrain = LaunchBrain()
         ///picker の delegate, dataSource を設定
         modePicker.delegate = self
         modePicker.dataSource = self
@@ -174,21 +177,44 @@ extension LaunchViewController: UITextFieldDelegate {
         return true
     }
     
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        //編集中の textFieldの値はnilとして登録する
+        switch textField {
+        case initalCardNumberTextFieild:
+            launchBrain!.i = nil
+        case lastCardNumberTextField:
+            launchBrain!.l = nil
+        case maxReturnCardsQuantityTextField:
+            launchBrain!.m = nil
+        case usualLearningCardsQuantityTextField:
+            launchBrain!.u = nil
+        default:
+            print("error")
+        }
+        return true
+    }
+    
     /// textfield が firstresponder の役割を終える直前にこのメソッドを呼び出す。trueを返すと役割を終える。
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        ///ここでは textField 上の注意書きのラベルに関する処理だけ行う.
-//        ///textFieldに入力された値は「スタート」ボタンが押された時に取得して
-//        /// CardDataAndLogic のインスタンスに格納する
-//        /// ただし maxReturnCardNumber は このメソッド内で userDefault に保存する.
-//        ///  ついでに. defaultModePicker の情報は pickerView の delegate メソッド内で保存する.
-        var i = Int(initalCardNumberTextFieild.text!)
-        let l = Int(lastCardNumberTextField.text!) ///〜番までの前の入力を取得
-        let x = Int(usualLearningCardsQuantityTextField.text!)
-        let m = Int(maxReturnCardsQuantityTextField.text!) ///〜枚で復習モード...の前の入力を取得.
         
-        if textField == lastCardNumberTextField {
-            lastCardNumberHasBeenNeverEditted = false
+        // textField の値を LaunchBrain に渡す
+        switch textField {
+        case initalCardNumberTextFieild:
+            launchBrain!.i = Int(initalCardNumberTextFieild.text!)
+        case lastCardNumberTextField:
+            launchBrain!.l = Int(lastCardNumberTextField.text!)
+        case maxReturnCardsQuantityTextField:
+            launchBrain!.m = Int(maxReturnCardsQuantityTextField.text!)
+        case usualLearningCardsQuantityTextField:
+            launchBrain!.u = Int(usualLearningCardsQuantityTextField.text!)
+        default:
+            print("Error")
         }
+        
         
         print("LVC_ i = \(i), l = \(l), m = \(m), maxL = \(cardDataAndLogic!.allWordsInTextBook_Data!.count)")
         print("LVC_ textField= \(textField)")
