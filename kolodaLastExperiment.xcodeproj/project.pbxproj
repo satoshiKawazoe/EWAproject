@@ -209,6 +209,7 @@
 				821F72DD296034DF00BF175B /* SceneDelegate.swift */,
 				827B208C29E3030B00A49C7D /* constants.swift */,
 				821F730D29603A6A00BF175B /* Controllers */,
+				823795BD2B1231D100C6A1E5 /* seed */,
 				8237AF7729D73643004AE66D /* View */,
 				8237AF8829DC5686004AE66D /* Model */,
 			);
@@ -248,6 +249,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		823795BD2B1231D100C6A1E5 /* seed */ = {
+			isa = PBXGroup;
+			children = (
+				82131FFE29F27B3A006F8FDD /* default.realm */,
+			);
+			path = seed;
+			sourceTree = "<group>";
+		};
 		8237AF7729D73643004AE66D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,7 +287,6 @@
 				827B208E29E651C600A49C7D /* CardDataAndLogic.swift */,
 				82A8B76829ECF46D00B830F1 /* DateBrain.swift */,
 				82131FF729F272A2006F8FDD /* MaxOriginal.swift */,
-				82131FFE29F27B3A006F8FDD /* default.realm */,
 				8209BD212B11F6E70089349F /* LaunchBrain.swift */,
 			);
 			path = Model;

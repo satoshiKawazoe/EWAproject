@@ -9,13 +9,7 @@ import Foundation
 
 struct LaunchBrain {
     
-//    init(l: Int?, m: Int?, u:Int?, s:Int?, ml: Int) {
-//        self.l = l
-//        self.m = m
-//        self.u = u
-//        self.s = s
-//        self.ml = ml
-//    }
+    let defaults = UserDefaults.standard
     
     var i: Int? // initalCardNumber
     var l: Int? // lastCardNumber
@@ -23,50 +17,10 @@ struct LaunchBrain {
     var u: Int? // usualLearningCardsQuantity
     var s: Int? // selectedLevelNumber
     var ml: Int // lastCardNumber の最大値
-    var initalCardNumberIsCorrect = false
-    var lastCardNumberIsCorrect = false
-    var maxReterunCardsQuantityIsCorrect = false
+    var alartToInitialCardNumber = ""
+    var alartToLastCardNumber = ""
+    var alartToMaxCardNumber = ""
     
-    mutating func alartInitalCardNumberTextFieild() -> String {
-        if i == nil {
-            return "1〜\(ml)"
-        } else if i! < 1 {
-            return "1〜\(ml)"
-        } else if i! > 1 && i! > ml {
-            return "1~\(ml)"
-        } else if i! > 1 && i! > l ?? ml {
-            return "1~\(l ?? ml)"
-        } else {
-            initalCardNumberIsCorrect = true
-            return ""
-        }
-    }
-    
-    mutating func alartLastCardNumberTextField() -> String {
-        if l == nil {
-            return "1〜\(ml)"
-        } else if l! < 1 {
-            return "1〜\(ml)"
-        } else if l! > 1 && l! > ml {
-            return "1〜\(ml)"
-        } else if l! > 1 && l! < i ?? 1 {
-            return "\(i ?? 1)〜\(ml)"
-        } else {
-            lastCardNumberIsCorrect = true
-            return ""
-        }
-    }
-    
-    mutating func alartMaxReturnCardsQuantityTextField() -> String {
-        if m == nil {
-            return "1〜"
-        } else if m! < 1 {
-            return "1〜"
-        } else {
-            maxReterunCardsQuantityIsCorrect = true
-            return ""
-        }
-    }
     
     func alartUsualLearningCardsQuantityTextField() -> String {
         if u == nil {
@@ -74,15 +28,115 @@ struct LaunchBrain {
         } else if u! < 1 {
             return "この機能は無効化されています"
         } else {
+            defaults.set(u, forKey: "usualLearningCardsQuantity")
             return ""
         }
     }
     
-    func canStartLearning() -> Bool {
-        if initalCardNumberIsCorrect == true && lastCardNumberIsCorrect == true && maxReterunCardsQuantityIsCorrect == true {
+    
+    // i が正しく入力されると、いつも〜まい学習する、の値 (u) を使ってLastCardNumberを計算し、
+    // 1. l に代入し、2. LaunchVC に結果を渡す
+    mutating func calculLastCardNum() -> Int {
+        if i != nil && i! >= 1 && i! <= ml && u != nil && u! > 1{
+            let cl = i! + u! - 1
+            if cl > ml {
+                l = ml
+            } else {
+                l = cl
+            }
+            return l!  //2.
+        } else {
+            return ml  //2.
+        }
+    }
+    
+    
+    mutating func canStartLearning() -> Bool {
+        if checkIandL() == true && checkM() == true {
             return true
         } else {
             return false
+        }
+    }
+    
+    mutating func checkIandL() -> Bool {
+        if i != nil && l != nil {
+            let ML = ml + 1
+            switch (i!, l!) {
+            case (1...ml, 1...ml):
+                if i! <= l! {
+                    alartToInitialCardNumber = ""
+                    alartToLastCardNumber = ""
+                    print("A")
+                    return true
+                } else {
+                    alartToInitialCardNumber = "正しく値を入力"
+                    alartToLastCardNumber = "正しく値を入力"
+                    print("B")
+                    return false
+                }
+            
+            case(1...ml, ..<1):
+                alartToInitialCardNumber = ""
+                alartToLastCardNumber = "1〜\(ml)"
+                print("C")
+                return false
+                
+            case (1...ml, ML...):
+                alartToInitialCardNumber = ""
+                alartToLastCardNumber = "1〜\(ml)"
+                print("D")
+                return false
+            case(ML..., 1...ml):
+                alartToInitialCardNumber = "1〜\(ml)"
+                alartToLastCardNumber = ""
+                print("E")
+                return false
+            case(ML..., 1...ml):
+                alartToInitialCardNumber = "1〜\(ml)"
+                alartToLastCardNumber = ""
+                print("F")
+                return false
+            default:
+                alartToInitialCardNumber = "1〜\(ml)"
+                alartToLastCardNumber = "1〜\(ml)"
+                print("G")
+                return false
+            }
+        } else {
+            
+            if i == nil {
+                alartToInitialCardNumber = "1〜\(ml)"
+                print("H")
+            } else {
+                alartToInitialCardNumber = ""
+                print("I")
+            }
+            
+            if l == nil {
+                alartToLastCardNumber = "1〜\(ml)"
+                print("J")
+            } else {
+                alartToLastCardNumber = ""
+                print("K")
+            }
+            return false
+        }
+    }
+    
+    mutating func checkM() -> Bool {
+        if m == nil {
+            alartToMaxCardNumber = "1〜"
+            print("L")
+            return false
+        } else if m! < 1 {
+            alartToMaxCardNumber = "1〜"
+            print("M")
+            return false
+        } else {
+            alartToMaxCardNumber = ""
+            print("N")
+            return true
         }
     }
 }
