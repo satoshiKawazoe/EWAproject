@@ -19,7 +19,7 @@ struct DataBrain {
         if from == "Certificate" {
             return "\(comp.year ?? 0).\(comp.month ?? 0).\(comp.day ?? 0)"
         } else if from == "Realm" {
-            return "\(comp.year! - 2000)/\(comp.month ?? 0)/\(comp.day ?? 0)"
+            return "\(comp.month ?? 0)/\(comp.day ?? 0)"
         } else {
             return "Error"
         }

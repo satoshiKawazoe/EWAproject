@@ -32,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func migrate(){
+        
+        let config = Realm.Configuration(schemaVersion: 0)
+        Realm.Configuration.defaultConfiguration = config
+        
+        ///migration に関しては以下のサイトの記事が役に立った。
+        ///https://tech.amefure.com/swift-realm-migration
+        
 //            let config = Realm.Configuration(
 //                // Set the new schema version. This must be greater than the previously used
 //                // version (if you've never set a schema version before, the version is 0).
