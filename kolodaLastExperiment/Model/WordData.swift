@@ -14,6 +14,8 @@ class WordData: Object {
     @objc dynamic var english: String = "" ///単語
     @objc dynamic var japanese: String = "" ///単語の日本語訳
     @objc dynamic var firstHiragana: String = "" ///日本語訳の最初の一文字目
+    ///
+    ///以下は記録をつける必要があるプロパティ
     @objc dynamic var certificatedLevel: String? ///Level.0, Level.1, Level.2, Perfect. Specialist
     @objc dynamic var certificatedDate: String? ///certificate が発行された日付.
     @objc dynamic var certificatedDateUTC: Int = 0 ///certificate が発行された時刻のUTC.

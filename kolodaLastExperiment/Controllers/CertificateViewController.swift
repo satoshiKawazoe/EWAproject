@@ -63,6 +63,8 @@ class CertificateViewController: UIViewController {
         super.viewDidLoad()
         makeCertificateView()
         makeMessageView()
+        
+        
         saveData()
         ///以下は FoloatingPanelController に関するコード
         fpc = FloatingPanelController()
@@ -74,6 +76,48 @@ class CertificateViewController: UIViewController {
         let unixtime: Int = Int(date.timeIntervalSince1970)
         print(unixtime)
         
+    }
+    
+    
+    func judgeMaster() {
+        
+    }
+    
+    //MARK: - データを Realm に保存するための関数
+    
+    func saveData() {
+        
+        let now = Date()
+        let nowUTC = Int(now.timeIntervalSince1970)
+        
+        if cardDataAndLogic!.failPerfectMode == true || cardDataAndLogic!.certificatedWordsDataArray.count == 0 {
+            //何も保存しない！
+        } else {
+            for i in 0 ... cardDataAndLogic!.certificatedWordsDataArray.count - 1 {
+                do {
+                    try realm.write {
+                        // ContinuasDate と CertificatedLevel を決定し保存
+                        let span = nowUTC - (cardDataAndLogic?.certificatedWordsDataArray[i].certificatedDateUTC ?? 0)
+                        if span > 86400  && span < 172800 { ///連続した日数学習したかを判定。この判定基準はもう少し考える必要あり。
+                            let c = (cardDataAndLogic?.certificatedWordsDataArray[i].continuationDate ?? 0) + 1
+                            if c >= 5 { /// Master の取得日数. UserDefaultから取得する.便宜上5になっている.
+                                cardDataAndLogic?.certificatedWordsDataArray[i].certificatedLevel = "Master"
+                            } else {
+                                cardDataAndLogic?.certificatedWordsDataArray[i].certificatedLevel = cardDataAndLogic?.selectedLebel
+                            }
+                        } else {
+                            //　continuationDate を更新しない
+                            cardDataAndLogic?.certificatedWordsDataArray[i].certificatedLevel = cardDataAndLogic?.selectedLebel
+                        }
+                        // certificatedDate と certificatedDateUTC を保存
+                        cardDataAndLogic?.certificatedWordsDataArray[i].certificatedDate = dateBrain.fetchData("Realm") ///クリアした日付を保存.
+                        cardDataAndLogic?.certificatedWordsDataArray[i].certificatedDateUTC = nowUTC ///クリアした日付のUTCを保存
+                    }
+                } catch {
+                    print("Error saving done status, \(error)")
+                }
+            }
+        }
     }
     
     //MARK: - certificateView を設定する関数
@@ -152,25 +196,6 @@ class CertificateViewController: UIViewController {
             }
         }
     }
-    
-    //MARK: - データを Realm に保存するための関数
-    
-    func saveData() {
-        if cardDataAndLogic!.failPerfectMode == true || cardDataAndLogic!.certificatedWordsDataArray.count == 0 {
-            //何も保存しない！
-        } else {
-            for i in 0 ... cardDataAndLogic!.certificatedWordsDataArray.count - 1 {
-                do {
-                    try realm.write {
-                        cardDataAndLogic?.certificatedWordsDataArray[i].certificatedLevel = (cardDataAndLogic?.selectedLebel)! ///クリアしたレベルを保存.
-                        cardDataAndLogic?.certificatedWordsDataArray[i].certificatedDate = dateBrain.fetchData("Realm") ///クリアした日付を保存.
-                    }
-                } catch {
-                    print("Error saving done status, \(error)")
-                }
-            }
-        }
-    }
 }
 
 
@@ -218,6 +243,9 @@ extension CertificateViewController {
             }
         }
     }
+    
+    
+
     
     func makeInitialInterface() {
         // LaunchVCのインスタンスを作成.

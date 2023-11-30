@@ -13,8 +13,7 @@ struct DataBrain {
         let date = Date() // May 4, 2020, 11:36 AM
         let cal = Calendar.current
         let comp = cal.dateComponents(
-            [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day,
-             Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second],
+            [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day, Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second],
              from: date)
         if from == "Certificate" {
             return "\(comp.year ?? 0).\(comp.month ?? 0).\(comp.day ?? 0)"

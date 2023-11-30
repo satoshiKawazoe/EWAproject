@@ -38,6 +38,10 @@ class WordCell: UITableViewCell {
                 cleardLevelLabel.isHidden = false
                 cleardLevelLabel.text = wordData!.certificatedLevel
                 cleardLevelLabel.backgroundColor = #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1)
+            case "Master":
+                cleardLevelLabel.isHidden = false
+                cleardLevelLabel.text = wordData!.certificatedLevel
+                cleardLevelLabel.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
             default:
                 cleardLevelLabel.isHidden = false
                 cleardDateLabel.text = wordData!.certificatedLevel
