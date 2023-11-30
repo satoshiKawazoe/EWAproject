@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func migrate(){
         
-        let config = Realm.Configuration(schemaVersion: 0)
+        let config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
         
         ///migration に関しては以下のサイトの記事が役に立った。

@@ -16,6 +16,8 @@ class WordData: Object {
     @objc dynamic var firstHiragana: String = "" ///日本語訳の最初の一文字目
     @objc dynamic var certificatedLevel: String? ///Level.0, Level.1, Level.2, Perfect. Specialist
     @objc dynamic var certificatedDate: String? ///certificate が発行された日付.
+    @objc dynamic var certificatedDateUTC: Int = 0 ///certificate が発行された時刻のUTC.
+    @objc dynamic var continuationDate: Int = 0 ///連続学習日数の記録
     
     var parentTextbook = LinkingObjects(fromType: Textbook.self, property: "wordsData")
 }

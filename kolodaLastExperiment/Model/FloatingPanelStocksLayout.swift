@@ -16,10 +16,10 @@ class FloatingPanelStocksLayoutForAllWordsVC: FloatingPanelLayout {
     let initialState: FloatingPanelState = .tip
     //以下の変数anchorsを用いてfloatingPanelが作られる
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
-        .full: FloatingPanelLayoutAnchor(absoluteInset: UIScreen.main.bounds.size.height * 0.64 / 1, edge: .bottom, referenceGuide: .safeArea),
-        .half: FloatingPanelLayoutAnchor(absoluteInset: UIScreen.main.bounds.size.height *  0.317 / 1, edge: .bottom, referenceGuide: .safeArea),
+        .full: FloatingPanelLayoutAnchor(absoluteInset: 540, edge: .bottom, referenceGuide: .safeArea),
+        .half: FloatingPanelLayoutAnchor(absoluteInset: 285, edge: .bottom, referenceGuide: .safeArea),
              /* Visible + ToolView */
-        .tip: FloatingPanelLayoutAnchor(absoluteInset: UIScreen.main.bounds.size.height *  0 / 7.5, edge: .bottom, referenceGuide: .superview),
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: -5, edge: .bottom, referenceGuide: .superview),
         ]
     
     func backdropAlpha(for state: FloatingPanelState) -> CGFloat {

@@ -882,6 +882,10 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="aJf-HP-NCh" firstAttribute="top" secondItem="NHE-GU-wi1" secondAttribute="bottom" id="ANm-QT-adU"/>
+                                    <constraint firstAttribute="bottom" secondItem="aJf-HP-NCh" secondAttribute="bottom" id="aau-JJ-6A3"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nIo-Y5-Kf5"/>
