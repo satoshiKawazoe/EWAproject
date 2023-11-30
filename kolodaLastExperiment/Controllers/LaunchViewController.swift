@@ -23,12 +23,6 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var maxReturnCardsQuantityTextField_NoteLabel: UILabel!
     @IBOutlet weak var lastCardNumberTextField_NoteLabel: UILabel!
     @IBOutlet weak var usualLearningCardQuantityTextField_NoteLabel: UILabel!
-    @IBOutlet weak var alertLabel_startButton_top: UILabel!
-    @IBOutlet weak var alertLabel_startButton_bottom: UILabel!
-    
-    @IBOutlet weak var bankaraButton: UIButton! ///「番から」の文字の下のボタン
-    @IBOutlet weak var banmadeButton: UIButton! ///「番まで」の文字の下のボタン
-    @IBOutlet weak var helpButton_rangeView: UIButton!
     @IBOutlet weak var helpButton_modeSelectingView: UIButton!
     @IBOutlet weak var helpButton_maxReturnCardNumberSettingView: UIButton!
     @IBOutlet weak var helpButton_defaultModeSettingView: UIButton!

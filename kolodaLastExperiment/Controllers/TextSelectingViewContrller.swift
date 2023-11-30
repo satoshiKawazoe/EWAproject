@@ -27,7 +27,6 @@ class TextSelectingViewController: UIViewController {
         super.viewDidLoad()
         
         textbook = realm.objects(Textbook.self).sorted(byKeyPath: "textNumber")
-        
         textScrollView.delegate = self
         configPageControle()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil) /// 次の画面のBackボタンを"戻る"に変更

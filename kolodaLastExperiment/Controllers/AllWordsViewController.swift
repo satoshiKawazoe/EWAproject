@@ -19,8 +19,7 @@ class AllWordsViewController: UIViewController {
     let realm = try! Realm()
     var fpc = LaunchFPC()
     var launchVC: LaunchViewController!
-    var cardDataAndLogic: CardDataAndLogic? ///textSelectingViewからtextBookプロパティが埋められた状態で送られてくる
-
+    var cardDataAndLogic: CardDataAndLogic?  ///textSelectingViewからtextBookプロパティが埋められた状態で送られてくる
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -34,6 +33,7 @@ class AllWordsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self
         tableView.register(UINib(nibName: "wordCell", bundle: nil), forCellReuseIdentifier: "WordsCell")
         //以下は FloatingPanel に関するコード
@@ -48,7 +48,6 @@ class AllWordsViewController: UIViewController {
     @IBAction func settingButtonIsPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToSettingVC", sender: nil)
     }
-    
 }
 
 
@@ -91,16 +90,18 @@ extension AllWordsViewController: UITableViewDataSource {
 extension AllWordsViewController {
     
     func configAppearance() {
-        /// FloatingPannelの外観を設定する.
+        
+        /// LaunchVCをfpcに追加する.
         launchVC = storyboard?.instantiateViewController(withIdentifier: "launch") as? LaunchViewController
-        launchVC.cardDataAndLogic = cardDataAndLogic
+        launchVC!.cardDataAndLogic = cardDataAndLogic
         fpc.set(contentViewController: launchVC) /// ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
-        fpc.move(to: .hidden, animated: false)
         fpc.addPanel(toParent: self)
+        fpc.move(to: .hidden, animated: false)
+        
+        /// FloatingPannelの外観を設定する.
+        fpc.configLaunchFPC(cardDataAndLogic!)
         ///「スタート」ボタンの外観を設定する.
-        startLearningButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        startLearningButton.layer.borderWidth = 1.5
-        startLearningButton.layer.cornerRadius = 10
+        startLearningButton.makeStaartLearningButton()
     }
 }
 

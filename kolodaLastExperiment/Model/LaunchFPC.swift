@@ -10,9 +10,13 @@ import FloatingPanel
 
 class LaunchFPC: FloatingPanelController {
     
-    var launchVC = LaunchViewController()
     
-    func configLaunchFPC() {
+    var launchVC : LaunchViewController!
+    var cardDataAndLogic: CardDataAndLogic?
+    
+    
+    func configLaunchFPC(_ cardDataAndLogic: CardDataAndLogic) {
+        
         self.surfaceView.appearance.cornerRadius = 26.0
         self.surfaceView.appearance.shadows = []
         self.surfaceView.appearance.borderWidth = 1.0 / traitCollection.displayScale
