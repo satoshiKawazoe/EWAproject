@@ -17,9 +17,9 @@ class AllWordsViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     let realm = try! Realm()
-    var fpc: FloatingPanelController!
+    var fpc = LaunchFPC()
     var launchVC: LaunchViewController!
-    var cardDataAndLogic: CardDataAndLogic?
+    var cardDataAndLogic: CardDataAndLogic? ///textSelectingViewからtextBookプロパティが埋められた状態で送られてくる
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,6 @@ class AllWordsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "wordCell", bundle: nil), forCellReuseIdentifier: "WordsCell")
         //以下は FloatingPanel に関するコード
-        fpc = FloatingPanelController()
         fpc.delegate = self
         configAppearance()
     }
@@ -58,7 +57,7 @@ class AllWordsViewController: UIViewController {
 extension AllWordsViewController: FloatingPanelControllerDelegate {
     
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
-        return FloatingPanelStocksLayoutForAllWordsVC()
+        return FloatingPanelStocksLayout()
     }
     
     func floatingPanelDidMove(_ vc: FloatingPanelController) {
@@ -86,6 +85,7 @@ extension AllWordsViewController: UITableViewDataSource {
     }
 }
 
+
 // MARK: - 外観に関するコード
 
 extension AllWordsViewController {
@@ -94,19 +94,9 @@ extension AllWordsViewController {
         /// FloatingPannelの外観を設定する.
         launchVC = storyboard?.instantiateViewController(withIdentifier: "launch") as? LaunchViewController
         launchVC.cardDataAndLogic = cardDataAndLogic
-        fpc.set(contentViewController: launchVC) // ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
-        fpc.move(to: .hidden, animated: false) //fpc.track(scrollView: launchVC.scrollView)
-        fpc.addPanel(toParent: self)  //fpc.surfaceView.backgroundColor = UIColor(displayP3Red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
-        fpc.surfaceView.appearance.cornerRadius = 26.0
-        fpc.surfaceView.appearance.shadows = []
-        fpc.surfaceView.appearance.borderWidth = 1.0 / traitCollection.displayScale
-        fpc.surfaceView.appearance.borderColor = UIColor.black.withAlphaComponent(0.2)
-        fpc.surfaceView.appearance.backgroundColor = .white
-        fpc.surfaceView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        fpc.surfaceView.layer.shadowColor = UIColor.black.cgColor
-        fpc.surfaceView.layer.shadowOpacity = 0.6
-        fpc.surfaceView.layer.shadowRadius = 7
-        
+        fpc.set(contentViewController: launchVC) /// ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
+        fpc.move(to: .hidden, animated: false)
+        fpc.addPanel(toParent: self)
         ///「スタート」ボタンの外観を設定する.
         startLearningButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         startLearningButton.layer.borderWidth = 1.5

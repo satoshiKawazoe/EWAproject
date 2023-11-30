@@ -20,7 +20,8 @@ class TextSelectingViewController: UIViewController {
     var textbook : Results<Textbook>?
     var wordsDataInRealm : Results<WordData>?
     let defaults = UserDefaults.standard
-    var cardDataAndLogic : CardDataAndLogic?
+    var cardDataAndLogic = CardDataAndLogic()
+    var cardData: CardData?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +31,32 @@ class TextSelectingViewController: UIViewController {
         textScrollView.delegate = self
         configPageControle()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil) /// 次の画面のBackボタンを"戻る"に変更
-        cardDataAndLogic = CardDataAndLogic()
-        
+    }
+    
+    //configure Page Controle
+    func configPageControle() {
+        //色
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.darkGray
+        //ページ
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.isUserInteractionEnabled = false
     }
     
     @IBAction func B1B2isSelected(_ sender: Any) {
-        print("\(textbook)")
-        cardDataAndLogic!.selectedTextbook = textbook![0]
+        cardDataAndLogic.selectedTextbook = textbook![0]
+//        cardData = CardData(textBook: textbook![0])
         performSegue(withIdentifier: "goToAllWordsVC", sender: nil)
     }
     @IBAction func A2B1isSelected(_ sender: Any) {
-        cardDataAndLogic!.selectedTextbook = textbook![1]
+        cardDataAndLogic.selectedTextbook = textbook![1]
+//        cardData = CardData(textBook: textbook![1])
         performSegue(withIdentifier: "goToAllWordsVC", sender: nil)
     }
     @IBAction func A1A2isSelected(_ sender: Any) {
-        cardDataAndLogic!.selectedTextbook = textbook![2]
+        cardDataAndLogic.selectedTextbook = textbook![2]
+//        cardData = CardData(textBook: textbook![2])
         performSegue(withIdentifier: "goToAllWordsVC", sender: nil)
     }
     
@@ -65,17 +77,6 @@ extension TextSelectingViewController: UIScrollViewDelegate {
         if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0 {
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
-    }
-    
-    //configure Page Controle
-    func configPageControle() {
-        //色
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = UIColor.darkGray
-        //ページ
-        pageControl.numberOfPages = 3
-        pageControl.currentPage = 0
-        pageControl.isUserInteractionEnabled = false
     }
 }
 

@@ -204,7 +204,7 @@ class CertificateViewController: UIViewController {
 extension CertificateViewController: FloatingPanelControllerDelegate {
     
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
-        return FloatingPanelStocksLayoutForAllWordsVC()
+        return FloatingPanelStocksLayout()
     }
     
     func floatingPanelDidMove(_ vc: FloatingPanelController) {

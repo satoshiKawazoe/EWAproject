@@ -37,6 +37,8 @@
 		8237AF8C29DC56EC004AE66D /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8237AF8A29DC56EC004AE66D /* TableViewCell.xib */; };
 		8237AF9629DD9D27004AE66D /* FloatingPanelStocksLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8237AF9529DD9D27004AE66D /* FloatingPanelStocksLayout.swift */; };
 		8270AFE32B18201900CD3090 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270AFE22B18201900CD3090 /* SettingVC.swift */; };
+		8270B0D52B18CDB300CD3090 /* LaunchFPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */; };
+		8270B0D72B18DBE900CD3090 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D62B18DBE900CD3090 /* CardData.swift */; };
 		827B208D29E3030B00A49C7D /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208C29E3030B00A49C7D /* constants.swift */; };
 		827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208E29E651C600A49C7D /* CardDataAndLogic.swift */; };
 		8295AB8D2960E4F50002B1FC /* CardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */; };
@@ -101,6 +103,8 @@
 		8237AF8A29DC56EC004AE66D /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		8237AF9529DD9D27004AE66D /* FloatingPanelStocksLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelStocksLayout.swift; sourceTree = "<group>"; };
 		8270AFE22B18201900CD3090 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFPC.swift; sourceTree = "<group>"; };
+		8270B0D62B18DBE900CD3090 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		827B208C29E3030B00A49C7D /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		827B208E29E651C600A49C7D /* CardDataAndLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataAndLogic.swift; sourceTree = "<group>"; };
 		8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardOverlayView.xib; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				82A8B76829ECF46D00B830F1 /* DateBrain.swift */,
 				82131FF729F272A2006F8FDD /* MaxOriginal.swift */,
 				8209BD212B11F6E70089349F /* LaunchBrain.swift */,
+				8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */,
+				8270B0D62B18DBE900CD3090 /* CardData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				82A8B76929ECF46D00B830F1 /* DateBrain.swift in Sources */,
 				8228A76D29A4B08B00921FD2 /* WordData.swift in Sources */,
 				8213205229F66C37006F8FDD /* OverlayoutPopUpViewController.swift in Sources */,
+				8270B0D52B18CDB300CD3090 /* LaunchFPC.swift in Sources */,
 				827B208D29E3030B00A49C7D /* constants.swift in Sources */,
 				8299E84B29767049000A6530 /* CertificateViewController.swift in Sources */,
 				8295AB8F2960E5AD0002B1FC /* CardOverlayView.swift in Sources */,
@@ -567,6 +574,7 @@
 				821F72DE296034DF00BF175B /* SceneDelegate.swift in Sources */,
 				8228A77329A5D8BC00921FD2 /* Textbook.swift in Sources */,
 				8299E84D2976A87F000A6530 /* extendView.swift in Sources */,
+				8270B0D72B18DBE900CD3090 /* CardData.swift in Sources */,
 				827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */,
 				82320C542971C98D00A7FDA3 /* AllWordsViewController.swift in Sources */,
 			);
