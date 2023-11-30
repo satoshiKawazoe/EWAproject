@@ -10,7 +10,6 @@ protocol CardViewControllerDelegate {
     func showTipButtonIsTappedInCardVC()
     func showAnswerButtonIsTappedInCardVC()
     func checkAnswerIsShown() -> Bool
-    func changeTipButtonIsTapped()
 }
 
 
@@ -27,7 +26,6 @@ class CardViewController: UIViewController {
     @IBOutlet weak var tipImageView: UIImageView!
     /// UIButton ボタン
     @IBOutlet weak var seeTipButton: UIButton!
-    @IBOutlet weak var changeTipImageButton: UIButton!
     /// UIView ビュー
     @IBOutlet weak var cardFrameStackView: UIStackView!
     @IBOutlet weak var centerFrameView: UIView!
@@ -68,7 +66,6 @@ class CardViewController: UIViewController {
         hinshiLabel.layer.cornerRadius = 5
         /// 表示 / 非表示に関するコード
         tipImageView.isHidden = true
-        changeTipImageButton.isHidden = true
         subWordLabel.isHidden = true
         ///枠線に関するコード
         cardFrameStackView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -86,16 +83,12 @@ class CardViewController: UIViewController {
     func showTipImage() {
         ///表示 / 非表示に関するコード
         seeTipButton.isHidden = true
-        changeTipImageButton.isHidden = false
         subWordLabel.isHidden = false
         tipImageView.isHidden = false
         ///枠線に関するコード
         centerFrameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         centerFrameView.layer.cornerRadius = 10
         centerFrameView.layer.borderWidth = 1
-        changeTipImageButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        changeTipImageButton.layer.cornerRadius = 5
-        changeTipImageButton.layer.borderWidth = 1
     }
     ///カードのインターフェイスを答えが表示された状態にするためのコード.
     func showAnswer() {
@@ -103,16 +96,12 @@ class CardViewController: UIViewController {
         mainWordLabel.text = wordData?.japanese
         ///表示 / 非表示に関するコード
         seeTipButton.isHidden = true
-        changeTipImageButton.isHidden = false
         subWordLabel.isHidden = false
         tipImageView.isHidden = false
         ///枠線に関するコード
         centerFrameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         centerFrameView.layer.cornerRadius = 10
         centerFrameView.layer.borderWidth = 1
-        changeTipImageButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        changeTipImageButton.layer.cornerRadius = 5
-        changeTipImageButton.layer.borderWidth = 1
     }
     
     //MARK: - IBAction
@@ -142,13 +131,9 @@ class CardViewController: UIViewController {
         delegate?.showTipButtonIsTappedInCardVC()
     }
     
-    @IBAction func changeTipImageButtonPressed(_ sender: Any) {
-        delegate?.changeTipButtonIsTapped()
-       
-    }
-    
 }
 
 
 
     
+

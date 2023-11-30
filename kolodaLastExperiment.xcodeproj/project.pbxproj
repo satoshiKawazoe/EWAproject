@@ -17,7 +17,6 @@
 		8213200129F27B3A006F8FDD /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 82131FFE29F27B3A006F8FDD /* default.realm */; };
 		8213204F29F66C37006F8FDD /* OverlayoutPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8213204B29F66C37006F8FDD /* OverlayoutPopUpViewController.xib */; };
 		8213205229F66C37006F8FDD /* OverlayoutPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213204E29F66C37006F8FDD /* OverlayoutPopUpViewController.swift */; };
-		8213205429F7A173006F8FDD /* AddTipImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213205329F7A173006F8FDD /* AddTipImageViewController.swift */; };
 		821F72DC296034DF00BF175B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F72DB296034DF00BF175B /* AppDelegate.swift */; };
 		821F72DE296034DF00BF175B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F72DD296034DF00BF175B /* SceneDelegate.swift */; };
 		821F72E0296034DF00BF175B /* LearningFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F72DF296034DF00BF175B /* LearningFieldViewController.swift */; };
@@ -36,9 +35,8 @@
 		8237AF8329DC10A5004AE66D /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8237AF8129DC10A5004AE66D /* CollectionViewCell.xib */; };
 		8237AF8B29DC56EC004AE66D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8237AF8929DC56EC004AE66D /* TableViewCell.swift */; };
 		8237AF8C29DC56EC004AE66D /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8237AF8A29DC56EC004AE66D /* TableViewCell.xib */; };
-		8237AF8E29DC647B004AE66D /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8237AF8D29DC647B004AE66D /* EditViewController.swift */; };
-		8237AF9229DC6547004AE66D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8237AF9129DC6547004AE66D /* AddViewController.swift */; };
 		8237AF9629DD9D27004AE66D /* FloatingPanelStocksLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8237AF9529DD9D27004AE66D /* FloatingPanelStocksLayout.swift */; };
+		8270AFE32B18201900CD3090 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270AFE22B18201900CD3090 /* SettingVC.swift */; };
 		827B208D29E3030B00A49C7D /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208C29E3030B00A49C7D /* constants.swift */; };
 		827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208E29E651C600A49C7D /* CardDataAndLogic.swift */; };
 		8295AB8D2960E4F50002B1FC /* CardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */; };
@@ -80,7 +78,6 @@
 		82131FFE29F27B3A006F8FDD /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		8213204B29F66C37006F8FDD /* OverlayoutPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayoutPopUpViewController.xib; sourceTree = "<group>"; };
 		8213204E29F66C37006F8FDD /* OverlayoutPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayoutPopUpViewController.swift; sourceTree = "<group>"; };
-		8213205329F7A173006F8FDD /* AddTipImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTipImageViewController.swift; sourceTree = "<group>"; };
 		821F72D8296034DF00BF175B /* kolodaLastExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kolodaLastExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821F72DB296034DF00BF175B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		821F72DD296034DF00BF175B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,9 +99,8 @@
 		8237AF8129DC10A5004AE66D /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		8237AF8929DC56EC004AE66D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8237AF8A29DC56EC004AE66D /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		8237AF8D29DC647B004AE66D /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		8237AF9129DC6547004AE66D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		8237AF9529DD9D27004AE66D /* FloatingPanelStocksLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelStocksLayout.swift; sourceTree = "<group>"; };
+		8270AFE22B18201900CD3090 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		827B208C29E3030B00A49C7D /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		827B208E29E651C600A49C7D /* CardDataAndLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataAndLogic.swift; sourceTree = "<group>"; };
 		8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardOverlayView.xib; sourceTree = "<group>"; };
@@ -242,9 +238,7 @@
 				821F72DF296034DF00BF175B /* LearningFieldViewController.swift */,
 				821F730B29603A6200BF175B /* CardViewController.swift */,
 				8299E84A29767049000A6530 /* CertificateViewController.swift */,
-				8237AF8D29DC647B004AE66D /* EditViewController.swift */,
-				8237AF9129DC6547004AE66D /* AddViewController.swift */,
-				8213205329F7A173006F8FDD /* AddTipImageViewController.swift */,
+				8270AFE22B18201900CD3090 /* SettingVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -552,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A8B76329ECD2DF00B830F1 /* Overwrite_MessageView.swift in Sources */,
+				8270AFE32B18201900CD3090 /* SettingVC.swift in Sources */,
 				82C9E9D229CBD6E900DC658B /* WordCell.swift in Sources */,
 				8237AF8B29DC56EC004AE66D /* TableViewCell.swift in Sources */,
 				82131FF829F272A2006F8FDD /* MaxOriginal.swift in Sources */,
@@ -564,9 +559,6 @@
 				8213205229F66C37006F8FDD /* OverlayoutPopUpViewController.swift in Sources */,
 				827B208D29E3030B00A49C7D /* constants.swift in Sources */,
 				8299E84B29767049000A6530 /* CertificateViewController.swift in Sources */,
-				8213205429F7A173006F8FDD /* AddTipImageViewController.swift in Sources */,
-				8237AF9229DC6547004AE66D /* AddViewController.swift in Sources */,
-				8237AF8E29DC647B004AE66D /* EditViewController.swift in Sources */,
 				8295AB8F2960E5AD0002B1FC /* CardOverlayView.swift in Sources */,
 				8209BD222B11F6E70089349F /* LaunchBrain.swift in Sources */,
 				821F72E0296034DF00BF175B /* LearningFieldViewController.swift in Sources */,

@@ -67,7 +67,7 @@ struct LaunchBrain {
                 if i! <= l! {
                     alartToInitialCardNumber = ""
                     alartToLastCardNumber = ""
-                    print("A")
+                    print("A \(i)")
                     return true
                 } else {
                     alartToInitialCardNumber = "正しく値を入力"
@@ -140,3 +140,4 @@ struct LaunchBrain {
         }
     }
 }
+

@@ -32,16 +32,13 @@ class LearningFieldViewController: UIViewController {
     var tipIsShown: Bool = false ///「ヒントを見る」ボタンが押されたかを表す変数
     var answerIsShown = false /// 答えを表示したかを表す変数
     var fpc: FloatingPanelController!
-    var addTipImageVC: AddTipImageViewController!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LearningVC, ViewDidLoad")
         /// navigationBar を非表示にする.
         navigationController?.setNavigationBarHidden(true, animated: false)
-        fpc = FloatingPanelController()
-        fpc.delegate = self
-        setFloatingPanel()
         /// CardVC, cardOverlayView のインスタンスの配列を作成.
         for _ in 1 ... cardDataAndLogic!.mainWordsDataArray.count {
             let cardVC = self.storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
@@ -54,31 +51,9 @@ class LearningFieldViewController: UIViewController {
         kolodaFrameView.delegate = self
         makeInitialInterface() ///ユーザーインターフェイスを完成させる.
         kolodaFrameView.reloadData() ///kolodaをリロード
-    }
-    
-    
-    func setFloatingPanel() {
-        /// FloatingPannelの外観を設定する.
-        addTipImageVC = storyboard?.instantiateViewController(withIdentifier: "addTipImageVC") as? AddTipImageViewController
-        fpc.set(contentViewController: addTipImageVC) // ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
-        fpc.move(to: .hidden, animated: false)
-        //        fpc.track(scrollView: launchVC.scrollView)
-        fpc.addPanel(toParent: self)
-//        fpc.surfaceView.backgroundColor = UIColor(displayP3Red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
-        fpc.surfaceView.appearance.cornerRadius = 26.0
-        fpc.surfaceView.appearance.shadows = []
-        fpc.surfaceView.appearance.borderWidth = 1.0 / traitCollection.displayScale
-        fpc.surfaceView.appearance.borderColor = UIColor.black.withAlphaComponent(0.2)
-        fpc.surfaceView.appearance.backgroundColor = .white
-        fpc.surfaceView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        fpc.surfaceView.layer.shadowColor = UIColor.black.cgColor
-        fpc.surfaceView.layer.shadowOpacity = 0.6
-        fpc.surfaceView.layer.shadowRadius = 7
+        print("LearningVC, Finish ViewDidLoad")
     }
 }
-
-
-
 
 //MARK: - KolodaViewDataSource - カードの作成を担当
 extension LearningFieldViewController: KolodaViewDataSource {
@@ -222,9 +197,6 @@ extension LearningFieldViewController: CardViewControllerDelegate {
         return answerIsShown
     }
     
-    func changeTipButtonIsTapped() {
-        fpc.move(to: .half, animated: true)
-    }
 }
 
 //MARK: - CardOverlayViewDelegate
@@ -240,23 +212,6 @@ extension LearningFieldViewController {
         if segue.identifier == "goToCertificate" {
             let destinationVC = segue.destination as! CertificateViewController
             destinationVC.cardDataAndLogic = cardDataAndLogic!
-        }
-    }
-}
-
-//MARK: - FloatingPanelDelegate
-
-extension LearningFieldViewController: FloatingPanelControllerDelegate {
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
-        return FloatingPanelStocksLayoutForAllWordsVC()
-    }
-    
-    func floatingPanelDidMove(_ vc: FloatingPanelController) {
-        if vc.isAttracting == false {
-            let loc = vc.surfaceLocation
-            let minY = vc.surfaceLocation(for: .full).y + 6.0
-            let maxY = vc.surfaceLocation(for: .tip).y - 6.0
-            vc.surfaceLocation = CGPoint(x: loc.x, y: min(max(loc.y, minY), maxY))
         }
     }
 }
@@ -306,7 +261,7 @@ extension LearningFieldViewController {
 //                inventoryListVC.cardDataAndLogic?.selectedTextbook = cardDataAndLogic?.selectedTextbook
             
                 inventoryListVC.tableView.reloadData()
-                inventoryListVC.makeInitialInterface() /// modePicker の初期値を userDefault から読み込みなおすためにもう一度最初のインターフェイスを作り直す.
+                inventoryListVC.configAppearance() /// modePicker の初期値を userDefault から読み込みなおすためにもう一度最初のインターフェイスを作り直す.
                 /// 遷移先の allWordsVC の FloatingPannel の位置を設定.
                 inventoryListVC.fpc.move(to: .hidden, animated: true)
                 /// navigationController を通して遷移を実行.
@@ -345,6 +300,7 @@ extension LearningFieldViewController {
         }
     }
 }
+
 
 
 

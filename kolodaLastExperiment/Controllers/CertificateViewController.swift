@@ -16,13 +16,12 @@ class CertificateViewController: UIViewController {
     @IBOutlet weak var certificateView: UIStackView!
     @IBOutlet weak var firstCommentLabel_certificateView: UILabel!
     @IBOutlet weak var secondCommentLabel_certificateView: UILabel!
-    @IBOutlet weak var seeRecordButton_ceritificateView: UIButton!
     @IBOutlet weak var thirdCommentLabel_certificateView: UILabel!
     @IBOutlet weak var triangleImageView: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     ///TryAgainView
     @IBOutlet weak var tryAgainView: UIView!
-    @IBOutlet weak var seeRecordButton_tryAgainView: UIButton!
     ///MessageView
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var firstCommentLabel_messageView: UILabel!
@@ -59,7 +58,7 @@ class CertificateViewController: UIViewController {
         }
     }
     
-
+// MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         makeCertificateView()
@@ -71,6 +70,10 @@ class CertificateViewController: UIViewController {
         ///以下は枠線などの外観を完成させるメソッド
         makeInitialInterface()
         
+        let date: Date = Date()
+        let unixtime: Int = Int(date.timeIntervalSince1970)
+        print(unixtime)
+        
     }
     
     //MARK: - certificateView を設定する関数
@@ -81,7 +84,6 @@ class CertificateViewController: UIViewController {
             tryAgainView.layer.borderColor = certificatedLevelColor_CGColor
             tryAgainView.layer.borderWidth = 3
             tryAgainView.layer.cornerRadius = 20
-            seeRecordButton_tryAgainView.layer.cornerRadius = 10
         } else {
             tryAgainView.isHidden = true
             if cardDataAndLogic?.getCertificateOnTheWay == true {
@@ -92,7 +94,6 @@ class CertificateViewController: UIViewController {
             secondCommentLabel_certificateView.text = "\(cardDataAndLogic!.selectedLebel!)モードで修了しました。"
             thirdCommentLabel_certificateView.text = dateBrain.fetchData("Certificate")
             ///色をつけていく
-            seeRecordButton_ceritificateView.backgroundColor = certificatedLevelColor_UIColor
             certificateView.layer.borderColor = certificatedLevelColor_CGColor
             certificateView.layer.borderWidth = 3
             certificateView.layer.cornerRadius = 20
@@ -211,7 +212,7 @@ extension CertificateViewController {
             if  let inventoryListVC = allVC![allVC!.count - m] as? AllWordsViewController {
                 AllWordsVCisFound = true
                 inventoryListVC.tableView.reloadData()
-                inventoryListVC.makeInitialInterface()
+                inventoryListVC.configAppearance()
                 inventoryListVC.fpc.move(to: .hidden, animated: true)
                 self.navigationController!.popToViewController(inventoryListVC, animated: true)
             }
@@ -237,6 +238,7 @@ extension CertificateViewController {
         fpc.surfaceView.layer.shadowColor = UIColor.black.cgColor
         fpc.surfaceView.layer.shadowOpacity = 0.6
         fpc.surfaceView.layer.shadowRadius = 7
+        
         ///その他枠線などに関するコード
         switch cardDataAndLogic!.selectedLebel {
         case "Level.1": relearnButton.backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
@@ -258,7 +260,7 @@ extension CertificateViewController {
         finishLearningButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         finishLearningButton.layer.borderWidth = 2
         finishLearningButton.layer.cornerRadius = 20
-        seeRecordButton_ceritificateView.layer.cornerRadius = 10
     }
     
 }
+

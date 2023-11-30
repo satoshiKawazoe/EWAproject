@@ -13,14 +13,13 @@ class AllWordsViewController: UIViewController {
     
     @IBOutlet weak var startLearningButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var allWordsListView: UIView!
     
     let defaults = UserDefaults.standard
     let realm = try! Realm()
     var fpc: FloatingPanelController!
     var launchVC: LaunchViewController!
-    var cardDataAndLogic: CardDataAndLogic? ///TextSelectingViewから送られてくるデータ.
+    var cardDataAndLogic: CardDataAndLogic?
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,44 +39,17 @@ class AllWordsViewController: UIViewController {
         //以下は FloatingPanel に関するコード
         fpc = FloatingPanelController()
         fpc.delegate = self
-        setFloatingPanel()
-        makeInitialInterface()
-    }
-    
-    func setFloatingPanel() {
-        /// FloatingPannelの外観を設定する.
-        launchVC = storyboard?.instantiateViewController(withIdentifier: "launch") as? LaunchViewController
-        launchVC.cardDataAndLogic = cardDataAndLogic
-        fpc.set(contentViewController: launchVC) // ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
-        fpc.move(to: .hidden, animated: false)
-        //        fpc.track(scrollView: launchVC.scrollView)
-        fpc.addPanel(toParent: self)
-//        fpc.surfaceView.backgroundColor = UIColor(displayP3Red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
-        fpc.surfaceView.appearance.cornerRadius = 26.0
-        fpc.surfaceView.appearance.shadows = []
-        fpc.surfaceView.appearance.borderWidth = 1.0 / traitCollection.displayScale
-        fpc.surfaceView.appearance.borderColor = UIColor.black.withAlphaComponent(0.2)
-        fpc.surfaceView.appearance.backgroundColor = .white
-        fpc.surfaceView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        fpc.surfaceView.layer.shadowColor = UIColor.black.cgColor
-        fpc.surfaceView.layer.shadowOpacity = 0.6
-        fpc.surfaceView.layer.shadowRadius = 7
-    }
-    
-    func makeInitialInterface() {
-        ///「スタート」ボタンの外観を設定する.
-        startLearningButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        startLearningButton.layer.borderWidth = 1.5
-        startLearningButton.layer.cornerRadius = 10
+        configAppearance()
     }
     
     @IBAction func startLearningButtonPressed(_ sender: Any) {
         fpc.move(to: .half, animated: true)
     }
     
-    @IBAction func editButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "goToEdit", sender: self)
+    @IBAction func settingButtonIsPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToSettingVC", sender: nil)
     }
+    
 }
 
 
@@ -113,6 +85,35 @@ extension AllWordsViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - 外観に関するコード
+
+extension AllWordsViewController {
+    
+    func configAppearance() {
+        /// FloatingPannelの外観を設定する.
+        launchVC = storyboard?.instantiateViewController(withIdentifier: "launch") as? LaunchViewController
+        launchVC.cardDataAndLogic = cardDataAndLogic
+        fpc.set(contentViewController: launchVC) // ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
+        fpc.move(to: .hidden, animated: false) //fpc.track(scrollView: launchVC.scrollView)
+        fpc.addPanel(toParent: self)  //fpc.surfaceView.backgroundColor = UIColor(displayP3Red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
+        fpc.surfaceView.appearance.cornerRadius = 26.0
+        fpc.surfaceView.appearance.shadows = []
+        fpc.surfaceView.appearance.borderWidth = 1.0 / traitCollection.displayScale
+        fpc.surfaceView.appearance.borderColor = UIColor.black.withAlphaComponent(0.2)
+        fpc.surfaceView.appearance.backgroundColor = .white
+        fpc.surfaceView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        fpc.surfaceView.layer.shadowColor = UIColor.black.cgColor
+        fpc.surfaceView.layer.shadowOpacity = 0.6
+        fpc.surfaceView.layer.shadowRadius = 7
+        
+        ///「スタート」ボタンの外観を設定する.
+        startLearningButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        startLearningButton.layer.borderWidth = 1.5
+        startLearningButton.layer.cornerRadius = 10
+    }
+}
+
 
 
 

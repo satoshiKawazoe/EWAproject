@@ -54,6 +54,7 @@ class LaunchViewController: UIViewController {
         super.viewDidLoad()
                 
         maxLastCardNumber = cardDataAndLogic!.allWordsInTextBook_Data!.count
+        
         if let safeSavedS = defaults.value(forKey: "defaultModeNumber") as? Int {
             savedSelectedLevelNumber = safeSavedS
         } else {
@@ -115,6 +116,18 @@ extension LaunchViewController: UITextFieldDelegate {
     }
     /// ユーザーがclearボタンを押したときにこのメソッドを呼び出す。trueを返すと textfield内のテキストを全て消去する
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        switch textField {
+        case initalCardNumberTextFieild:
+            launchBrain!.i = nil
+        case lastCardNumberTextField:
+            launchBrain!.l = nil
+        case maxReturnCardsQuantityTextField:
+            launchBrain!.m = nil
+        case usualLearningCardsQuantityTextField:
+            launchBrain!.u = nil
+        default:
+            print("error")
+        }
         return true
     }
     
@@ -329,6 +342,7 @@ extension LaunchViewController {
             lastCardNumberTextField_NoteLabel.text = ""
             maxReturnCardsQuantityTextField_NoteLabel.text = ""
             performSegue(withIdentifier: "goToLearningField", sender: nil)
+            print("LaunchVC, StartButtonPressed")
         } else {
             initalCardNumberTextField_NoteLabel.text = launchBrain?.alartToInitialCardNumber
             lastCardNumberTextField_NoteLabel.text = launchBrain?.alartToLastCardNumber
@@ -366,3 +380,4 @@ extension LaunchViewController {
     }
 
 }
+
