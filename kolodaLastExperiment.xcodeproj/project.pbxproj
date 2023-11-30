@@ -10,6 +10,7 @@
 		27FB569F41D2E9A2B8FA3608 /* Pods_kolodaLastExperimentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AAA7220BB97A6544BC2FBA /* Pods_kolodaLastExperimentTests.framework */; };
 		2F6EF27CCDB266D5A5C05793 /* Pods_kolodaLastExperiment_kolodaLastExperimentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5F56EA6D0C69673A89EF14 /* Pods_kolodaLastExperiment_kolodaLastExperimentUITests.framework */; };
 		72B539B7796EABA89FCD08EA /* Pods_kolodaLastExperiment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB8498BCFB96DD9680DFEB4 /* Pods_kolodaLastExperiment.framework */; };
+		8209BD222B11F6E70089349F /* LaunchBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209BD212B11F6E70089349F /* LaunchBrain.swift */; };
 		82131FF829F272A2006F8FDD /* MaxOriginal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82131FF729F272A2006F8FDD /* MaxOriginal.swift */; };
 		82131FFF29F27B3A006F8FDD /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 82131FFE29F27B3A006F8FDD /* default.realm */; };
 		8213200029F27B3A006F8FDD /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 82131FFE29F27B3A006F8FDD /* default.realm */; };
@@ -74,6 +75,7 @@
 		2AE9397EB254662E85B7B35E /* Pods-kolodaLastExperiment-kolodaLastExperimentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kolodaLastExperiment-kolodaLastExperimentUITests.release.xcconfig"; path = "Target Support Files/Pods-kolodaLastExperiment-kolodaLastExperimentUITests/Pods-kolodaLastExperiment-kolodaLastExperimentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2D213BB2043278AAA39951C1 /* Pods-kolodaLastExperiment-kolodaLastExperimentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kolodaLastExperiment-kolodaLastExperimentUITests.debug.xcconfig"; path = "Target Support Files/Pods-kolodaLastExperiment-kolodaLastExperimentUITests/Pods-kolodaLastExperiment-kolodaLastExperimentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		30E079460293481422F4289C /* Pods-kolodaLastExperimentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kolodaLastExperimentTests.debug.xcconfig"; path = "Target Support Files/Pods-kolodaLastExperimentTests/Pods-kolodaLastExperimentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8209BD212B11F6E70089349F /* LaunchBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchBrain.swift; sourceTree = "<group>"; };
 		82131FF729F272A2006F8FDD /* MaxOriginal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxOriginal.swift; sourceTree = "<group>"; };
 		82131FFE29F27B3A006F8FDD /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		8213204B29F66C37006F8FDD /* OverlayoutPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayoutPopUpViewController.xib; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				821F72DD296034DF00BF175B /* SceneDelegate.swift */,
 				827B208C29E3030B00A49C7D /* constants.swift */,
 				821F730D29603A6A00BF175B /* Controllers */,
+				823795BD2B1231D100C6A1E5 /* seed */,
 				8237AF7729D73643004AE66D /* View */,
 				8237AF8829DC5686004AE66D /* Model */,
 			);
@@ -246,6 +249,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		823795BD2B1231D100C6A1E5 /* seed */ = {
+			isa = PBXGroup;
+			children = (
+				82131FFE29F27B3A006F8FDD /* default.realm */,
+			);
+			path = seed;
+			sourceTree = "<group>";
+		};
 		8237AF7729D73643004AE66D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +287,7 @@
 				827B208E29E651C600A49C7D /* CardDataAndLogic.swift */,
 				82A8B76829ECF46D00B830F1 /* DateBrain.swift */,
 				82131FF729F272A2006F8FDD /* MaxOriginal.swift */,
-				82131FFE29F27B3A006F8FDD /* default.realm */,
+				8209BD212B11F6E70089349F /* LaunchBrain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -557,6 +568,7 @@
 				8237AF9229DC6547004AE66D /* AddViewController.swift in Sources */,
 				8237AF8E29DC647B004AE66D /* EditViewController.swift in Sources */,
 				8295AB8F2960E5AD0002B1FC /* CardOverlayView.swift in Sources */,
+				8209BD222B11F6E70089349F /* LaunchBrain.swift in Sources */,
 				821F72E0296034DF00BF175B /* LearningFieldViewController.swift in Sources */,
 				821F72DC296034DF00BF175B /* AppDelegate.swift in Sources */,
 				8297766B29711CBC00F2E9EC /* LaunchViewController.swift in Sources */,
