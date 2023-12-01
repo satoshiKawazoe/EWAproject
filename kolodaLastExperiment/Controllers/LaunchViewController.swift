@@ -261,29 +261,14 @@ extension LaunchViewController {
     
     func makeInitialInterface() {
         /// TextField のキーボードを設定.
-        initalCardNumberTextFieild.keyboardType = UIKeyboardType.numberPad
-        lastCardNumberTextField.keyboardType = UIKeyboardType.numberPad
-        maxReturnCardsQuantityTextField.keyboardType = UIKeyboardType.numberPad
-        usualLearningCardsQuantityTextField.keyboardType = UIKeyboardType.numberPad
-        /// 枠線を描く.
-        initalCardNumberTextFieild.layer.borderWidth = 1.5
-        initalCardNumberTextFieild.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        initalCardNumberTextFieild.layer.cornerRadius = 7.5
-        lastCardNumberTextField.layer.borderWidth = 1.5
-        lastCardNumberTextField.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        lastCardNumberTextField.layer.cornerRadius = 7.5
-        maxReturnCardsQuantityTextField.layer.borderWidth = 1.5
-        maxReturnCardsQuantityTextField.layer.borderColor  = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        maxReturnCardsQuantityTextField.layer.cornerRadius = 7.5
-        usualLearningCardsQuantityTextField.layer.borderWidth = 1.5
-        usualLearningCardsQuantityTextField.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        usualLearningCardsQuantityTextField.layer.cornerRadius = 7.5
-        startButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        startButton.layer.borderWidth = 1.5
-        startButton.layer.cornerRadius = 20
-        borderLabels[0].addBorders(edges: [.bottom, .top], color:  #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), thickness: 0.7)
-        borderLabels[1].addBorders(edges: [.bottom, .top], color:  #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), thickness: 0.7)
-        borderLabels[2].addBorders(edges: [.bottom], color:  #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), thickness: 0.7)
+        initalCardNumberTextFieild.configTextField()
+        lastCardNumberTextField.configTextField()
+        maxReturnCardsQuantityTextField.configTextField()
+        usualLearningCardsQuantityTextField.configTextField()
+        startButton.makeLaunchButton()
+        for i in 0...2 {
+            borderLabels[i].addBorders(edges: [.bottom, .top], color:  #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), thickness: 0.7)
+        }
     }
 }
     

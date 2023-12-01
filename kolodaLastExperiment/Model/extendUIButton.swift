@@ -13,4 +13,12 @@ extension UIButton {
         self.layer.borderWidth = 1.5
         self.layer.cornerRadius = 10
     }
+    
+    func makeLaunchButton() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 20
+    }
 }
+
+

@@ -14,7 +14,6 @@ class LaunchFPC: FloatingPanelController {
     var launchVC : LaunchViewController!
     var cardDataAndLogic: CardDataAndLogic?
     
-    
     func configLaunchFPC(_ cardDataAndLogic: CardDataAndLogic) {
         
         self.surfaceView.appearance.cornerRadius = 26.0

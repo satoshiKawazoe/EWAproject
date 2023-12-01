@@ -11,6 +11,7 @@ import UIKit
 //MARK: - 特定の辺のみ枠線をつけるための関数 addBorders(...)
 extension UIView {
     
+    
     @discardableResult
     func addBorders(edges: UIRectEdge,
                     color: UIColor,
@@ -60,7 +61,7 @@ extension UIView {
 
 
 //MARK: - 親のViewやViewControllerを取得するためのextension
-    ///以下のコードで親のviewControllerを取得できる
+///以下のコードで親のviewControllerを取得できる
  //  if let parentVC = self.parentViewController() as? 〇〇ViewController ｛
  //
  //  }

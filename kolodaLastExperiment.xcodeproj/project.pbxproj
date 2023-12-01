@@ -40,6 +40,7 @@
 		8270B0D52B18CDB300CD3090 /* LaunchFPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */; };
 		8270B0D72B18DBE900CD3090 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D62B18DBE900CD3090 /* CardData.swift */; };
 		8270B0D92B18E0E500CD3090 /* extendUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D82B18E0E500CD3090 /* extendUIButton.swift */; };
+		8270B0DB2B19914700CD3090 /* extendUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0DA2B19914700CD3090 /* extendUITextField.swift */; };
 		827B208D29E3030B00A49C7D /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208C29E3030B00A49C7D /* constants.swift */; };
 		827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208E29E651C600A49C7D /* CardDataAndLogic.swift */; };
 		8295AB8D2960E4F50002B1FC /* CardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */; };
@@ -107,6 +108,7 @@
 		8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFPC.swift; sourceTree = "<group>"; };
 		8270B0D62B18DBE900CD3090 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		8270B0D82B18E0E500CD3090 /* extendUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extendUIButton.swift; sourceTree = "<group>"; };
+		8270B0DA2B19914700CD3090 /* extendUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extendUITextField.swift; sourceTree = "<group>"; };
 		827B208C29E3030B00A49C7D /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		827B208E29E651C600A49C7D /* CardDataAndLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataAndLogic.swift; sourceTree = "<group>"; };
 		8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardOverlayView.xib; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				8270B0D42B18CDB300CD3090 /* LaunchFPC.swift */,
 				8270B0D62B18DBE900CD3090 /* CardData.swift */,
 				8270B0D82B18E0E500CD3090 /* extendUIButton.swift */,
+				8270B0DA2B19914700CD3090 /* extendUITextField.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				8228A76F29A4B18700921FD2 /* TextSelectingViewContrller.swift in Sources */,
 				821F730C29603A6200BF175B /* CardViewController.swift in Sources */,
 				8237AF9629DD9D27004AE66D /* FloatingPanelStocksLayout.swift in Sources */,
+				8270B0DB2B19914700CD3090 /* extendUITextField.swift in Sources */,
 				82A8B76929ECF46D00B830F1 /* DateBrain.swift in Sources */,
 				8228A76D29A4B08B00921FD2 /* WordData.swift in Sources */,
 				8270B0D92B18E0E500CD3090 /* extendUIButton.swift in Sources */,
