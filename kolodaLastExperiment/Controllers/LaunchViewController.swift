@@ -28,6 +28,7 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var helpButton_defaultModeSettingView: UIButton!
     @IBOutlet var borderLabels: [UILabel]!
     
+    
     let defaults = UserDefaults.standard
     var cardDataAndLogic: CardDataAndLogic? ///ほかのViewControllerから送られてくる.
     var launchBrain: LaunchBrain?
@@ -54,6 +55,7 @@ class LaunchViewController: UIViewController {
         } else {
             savedSelectedLevelNumber = 0
         }
+        print("LaunchVC, savedM = \(defaults.value(forKey: "maxReturnCardQuantity") as? Int)")
         if let safeSavedM = defaults.value(forKey: "maxReturnCardQuantity") as? Int {
             savedMaxReturnCardsQuantity = safeSavedM
         } else {
@@ -71,12 +73,8 @@ class LaunchViewController: UIViewController {
         
         /// LaunchBrain構造体を作成
         /// LaunchBrain構造体は学習スタートの許可や入力されていない値を入力するように促すラベルの表示を統括
-        launchBrain = LaunchBrain(ml: maxLastCardNumber!)
-        launchBrain!.i = 1
-        launchBrain!.l = maxLastCardNumber
-        launchBrain!.m = savedMaxReturnCardsQuantity
-        launchBrain!.s = savedSelectedLevelNumber
-        launchBrain!.u = savedUsualLearningCardsQuantity
+        launchBrain = LaunchBrain(i: 1, l: maxLastCardNumber, m: savedMaxReturnCardsQuantity, u: savedUsualLearningCardsQuantity, s: savedSelectedLevelNumber!,ml: maxLastCardNumber!)
+        
         ///picker の delegate, dataSource を設定
         modePicker.delegate = self
         modePicker.dataSource = self
@@ -96,7 +94,7 @@ class LaunchViewController: UIViewController {
         usualLearningCardsQuantityTextField.text = String(savedUsualLearningCardsQuantity!)
         //枠線を設定
         makeInitialInterface()
-        keyboardBar() ///キーボードの toolBar を作成する.
+        
     }
     
 }
@@ -159,14 +157,20 @@ extension LaunchViewController: UITextFieldDelegate {
             if lastCardNumIsEdited == false {
                 lastCardNumberTextField.text = String(launchBrain!.calculLastCardNum())
             }
-            
+            /// initialCardNumberTextField_NoteLabel.text = これは スタートボタンが押されたときに決定する
         case lastCardNumberTextField:
             launchBrain!.l = Int(lastCardNumberTextField.text!)
-            lastCardNumIsEdited = true  //LastCardNum が未編集でないことを記録する
+            lastCardNumIsEdited = true  ///LastCardNum が未編集でないことを記録する
+            /// lastCardNumberTextField_NoteLabel.text = これは スタートボタンが押されたときに決定する
         case maxReturnCardsQuantityTextField:
-            launchBrain!.m = Int(maxReturnCardsQuantityTextField.text!)
+            let m = Int(maxReturnCardsQuantityTextField.text!)
+            launchBrain!.m = m
+            defaults.set(m, forKey: "maxReturnCardQuantity") //これはスタートボタンが押されたときに実行すべきかも
+            ///maxReturnCardsQuantityTextField_NoteLabel.text = これは スタートボタンが押されたときに決定する
         case usualLearningCardsQuantityTextField:
-            launchBrain!.u = Int(usualLearningCardsQuantityTextField.text!)
+            let u = Int(usualLearningCardsQuantityTextField.text!)
+            launchBrain!.u = u
+            defaults.set(u, forKey: "usualLearningCardsQuantity")
             usualLearningCardQuantityTextField_NoteLabel.text = launchBrain!.alartUsualLearningCardsQuantityTextField()
         default:
             print("Error")
@@ -215,45 +219,6 @@ extension LaunchViewController: UIPickerViewDelegate {
     }
 }
 
-//MARK: - キーボードの toolBar を作成する関数
-
-extension LaunchViewController {
-    // Make a bar on the keyboard.
-    func keyboardBar() {
-        // ツールバーのインスタンスを作成
-            let toolBar = UIToolbar()
-
-        // ツールバーに配置するアイテムのインスタンスを作成
-        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let okButton: UIBarButtonItem = UIBarButtonItem(title: "OK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(tapOkButton(_:)))
-        okButton.width = 100
-        let cancelButton: UIBarButtonItem = UIBarButtonItem(title: "CANCEL", style: UIBarButtonItem.Style.plain, target: self, action: #selector(tapCancelButton(_:)))
-
-                // アイテムを配置
-//                toolBar.setItems([flexibleItem, okButton, flexibleItem, cancelButton, flexibleItem], animated: true)
-        toolBar.setItems([flexibleItem, okButton, flexibleItem], animated: true)
-
-                // ツールバーのサイズを指定
-                toolBar.sizeToFit()
-
-        // テキストフィールドにツールバーを設定
-        lastCardNumberTextField.inputAccessoryView = toolBar
-        initalCardNumberTextFieild.inputAccessoryView = toolBar
-        maxReturnCardsQuantityTextField.inputAccessoryView = toolBar
-        usualLearningCardsQuantityTextField.inputAccessoryView = toolBar
-    }
-    
-    @objc func tapOkButton(_ sender: UIButton){
-           // キーボードを閉じる
-           self.view.endEditing(true)
-       }
-       @objc func tapCancelButton(_ sender: UIButton){
-           // テキストフィールドを空にする
-           
-       }
-
-
-}
 
 //MARK: - 枠線に関する関数
 
@@ -317,9 +282,9 @@ extension LaunchViewController {
             cardDataAndLogic!.lastCardNumber = Int(lastCardNumberTextField.text!)
             cardDataAndLogic!.maxReturnCardsQuantity = Int(maxReturnCardsQuantityTextField.text!)
             cardDataAndLogic!.selectedLevelNumber = modePicker.selectedRow(inComponent: 0)
-            initalCardNumberTextField_NoteLabel.text = ""
-            lastCardNumberTextField_NoteLabel.text = ""
-            maxReturnCardsQuantityTextField_NoteLabel.text = ""
+//            initalCardNumberTextField_NoteLabel.text = ""
+//            lastCardNumberTextField_NoteLabel.text = ""
+//            maxReturnCardsQuantityTextField_NoteLabel.text = ""
             performSegue(withIdentifier: "goToLearningField", sender: nil)
             print("LaunchVC, StartButtonPressed")
         } else {
