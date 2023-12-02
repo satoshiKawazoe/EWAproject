@@ -39,8 +39,7 @@ class CardViewController: UIViewController {
         hinshiLabel.backgroundColor = HinshiColor.getHinshiColor(wordData?.hinshi)
         hinshiLabel.layer.cornerRadius = 5
         /// 表示 / 非表示に関するコード
-        tipImageView.isHidden = true
-        subWordLabel.isHidden = true
+        centerFrameView.isHidden = true
         ///枠線に関するコード
         cardFrameStackView.makeCardFrameStackView()
         seeTipButton.makeSeeTipButton()
@@ -78,8 +77,7 @@ class CardViewController: UIViewController {
     func showTipImage() {
         ///表示 / 非表示に関するコード
         seeTipButton.isHidden = true
-        subWordLabel.isHidden = false
-        tipImageView.isHidden = false
+        centerFrameView.isHidden = false
     }
     
     ///カードのインターフェイスを答えが表示された状態にするためのコード.
@@ -88,13 +86,8 @@ class CardViewController: UIViewController {
         mainWordLabel.text = wordData?.japanese
         ///表示 / 非表示に関するコード
         seeTipButton.isHidden = true
-        subWordLabel.isHidden = false
-        tipImageView.isHidden = false
+        centerFrameView.isHidden = false
     }
     
 }
-
-
-
-    
 

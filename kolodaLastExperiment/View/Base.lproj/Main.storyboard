@@ -1075,62 +1075,61 @@
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JKa-y3-0ZR">
-                                                        <rect key="frame" x="17" y="49" width="311" height="466.5"/>
+                                                        <rect key="frame" x="17" y="48" width="311" height="466.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="JKa-y3-0ZR" secondAttribute="height" multiplier="2:3" id="YlR-nm-nvW"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="certificate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-ah-8tb">
-                                                        <rect key="frame" x="15" y="15.5" width="200" height="21.5"/>
+                                                        <rect key="frame" x="15" y="15" width="200" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="62c-wY-mP8"/>
-                                                            <constraint firstAttribute="height" constant="21.5" id="XNQ-61-QY5"/>
+                                                            <constraint firstAttribute="height" constant="21" id="XNQ-61-QY5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvi-3U-359" userLabel="goToTipButton">
-                                                        <rect key="frame" x="5" y="447" width="335" height="90"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="90" id="fwv-Ie-jN4"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="ヒントを見る">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="seeTipButtonPressed:" destination="2mH-pC-jSo" eventType="touchUpInside" id="gOa-IO-5v7"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="JKa-y3-0ZR" firstAttribute="top" secondItem="8Wn-ah-8tb" secondAttribute="bottom" constant="12" id="3c7-bc-djc"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jvi-3U-359" secondAttribute="trailing" constant="5" id="9Ti-kp-QCp"/>
                                                     <constraint firstAttribute="trailing" secondItem="JKa-y3-0ZR" secondAttribute="trailing" constant="17" id="KRL-a0-0It"/>
                                                     <constraint firstItem="8Wn-ah-8tb" firstAttribute="leading" secondItem="EjC-g0-5iy" secondAttribute="leading" constant="15" id="U58-qN-7D5"/>
-                                                    <constraint firstAttribute="bottom" secondItem="jvi-3U-359" secondAttribute="bottom" constant="15" id="XSh-gr-3VP"/>
-                                                    <constraint firstItem="Nfs-od-Z5k" firstAttribute="centerX" secondItem="jvi-3U-359" secondAttribute="centerX" id="e2D-4a-so7"/>
                                                     <constraint firstItem="Nfs-od-Z5k" firstAttribute="centerX" secondItem="JKa-y3-0ZR" secondAttribute="centerX" id="gc9-6M-Kcq"/>
                                                     <constraint firstAttribute="bottom" secondItem="Nfs-od-Z5k" secondAttribute="bottom" id="hdb-aE-vFE"/>
-                                                    <constraint firstItem="8Wn-ah-8tb" firstAttribute="top" secondItem="EjC-g0-5iy" secondAttribute="top" constant="15.5" id="heG-c4-4hL"/>
+                                                    <constraint firstItem="8Wn-ah-8tb" firstAttribute="top" secondItem="EjC-g0-5iy" secondAttribute="top" constant="15" id="heG-c4-4hL"/>
                                                     <constraint firstItem="JKa-y3-0ZR" firstAttribute="leading" secondItem="EjC-g0-5iy" secondAttribute="leading" constant="17" id="iEx-Qi-Jye"/>
                                                     <constraint firstItem="Nfs-od-Z5k" firstAttribute="leading" secondItem="EjC-g0-5iy" secondAttribute="leading" id="jwV-Ve-fSe"/>
-                                                    <constraint firstItem="jvi-3U-359" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EjC-g0-5iy" secondAttribute="leading" constant="5" id="m8Y-1k-vBK"/>
                                                     <constraint firstAttribute="trailing" secondItem="Nfs-od-Z5k" secondAttribute="trailing" id="moG-8O-bK3"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JKa-y3-0ZR" secondAttribute="bottom" constant="15" id="mpQ-YZ-cIN"/>
                                                     <constraint firstItem="Nfs-od-Z5k" firstAttribute="top" secondItem="EjC-g0-5iy" secondAttribute="top" id="tKM-ji-0dD"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvi-3U-359" userLabel="goToTipButton">
+                                                <rect key="frame" x="20" y="457" width="335" height="90"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="fwv-Ie-jN4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="ヒントを見る">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="seeTipButtonPressed:" destination="2mH-pC-jSo" eventType="touchUpInside" id="gOa-IO-5v7"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="EjC-g0-5iy" secondAttribute="trailing" constant="15" id="AkI-A5-uJi"/>
+                                            <constraint firstAttribute="bottom" secondItem="jvi-3U-359" secondAttribute="bottom" constant="20" id="HlV-JJ-OaE"/>
                                             <constraint firstAttribute="bottom" secondItem="EjC-g0-5iy" secondAttribute="bottom" constant="15" id="HvD-fx-fId"/>
+                                            <constraint firstAttribute="trailing" secondItem="jvi-3U-359" secondAttribute="trailing" constant="20" id="bxi-rA-IDy"/>
+                                            <constraint firstItem="jvi-3U-359" firstAttribute="leading" secondItem="oBT-tB-9JW" secondAttribute="leading" constant="20" id="ck0-gt-ezV"/>
                                             <constraint firstItem="EjC-g0-5iy" firstAttribute="leading" secondItem="oBT-tB-9JW" secondAttribute="leading" constant="15" id="fFP-uB-Ti5"/>
                                             <constraint firstItem="EjC-g0-5iy" firstAttribute="top" secondItem="oBT-tB-9JW" secondAttribute="top" id="tBn-tq-QUx"/>
                                         </constraints>
