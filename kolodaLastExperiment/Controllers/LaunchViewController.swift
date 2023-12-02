@@ -30,14 +30,14 @@ class LaunchViewController: UIViewController {
     
     
     let defaults = UserDefaults.standard
+    var getSavedVariables = GetSavedVariables() /// UserDefaultからデータを取得する関数が入った構造体
     var cardDataAndLogic: CardDataAndLogic? ///ほかのViewControllerから送られてくる.
-    var launchBrain: LaunchBrain?
-    var maxLastCardNumber: Int?
+    var launchBrain: LaunchBrain? ///"学習をスタートする"ボタンが押されたとき, 許可を出す構造体
+    var maxLastCardNumber: Int? ///
     var savedSelectedLevelNumber: Int?
     var savedMaxReturnCardsQuantity: Int?
     var savedUsualLearningCardsQuantity: Int?
     var lastCardNumIsEdited = false ///いつも〜枚学習するの数値は, lastCardNumberTextField が未編集のとき, のみ initalCardNumberTextField の数値から lastCardNumber を計算しlastCardNumberTextField の数値を書き換える. 「学習を開始する」ボタンが押されてから lastCabrdNumberTextField が未編集のときこの変数は true になる.
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //            outputText.text = inputText.text
@@ -49,28 +49,10 @@ class LaunchViewController: UIViewController {
         super.viewDidLoad()
                 
         maxLastCardNumber = cardDataAndLogic!.allWordsInTextBook_Data!.count
-        
-        if let safeSavedS = defaults.value(forKey: "defaultModeNumber") as? Int {
-            savedSelectedLevelNumber = safeSavedS
-        } else {
-            savedSelectedLevelNumber = 0
-        }
-        print("LaunchVC, savedM = \(defaults.value(forKey: "maxReturnCardQuantity") as? Int)")
-        if let safeSavedM = defaults.value(forKey: "maxReturnCardQuantity") as? Int {
-            savedMaxReturnCardsQuantity = safeSavedM
-        } else {
-            savedMaxReturnCardsQuantity = 5
-        }
-        if let x = defaults.value(forKey: "usualLearningCardsQuantity") as? Int {
-            if x != 0 {
-                savedUsualLearningCardsQuantity = x
-            } else {
-                savedUsualLearningCardsQuantity = 0
-            }
-        } else { /// userDefaults にデータが入っていないとき
-            savedUsualLearningCardsQuantity = 50
-        }
-        
+        /// userDafault に保存されているデータを取得
+        savedSelectedLevelNumber = getSavedVariables.getSavedSelectedLvNum()
+        savedMaxReturnCardsQuantity = getSavedVariables.getSavedMRCQ()
+        savedUsualLearningCardsQuantity = getSavedVariables.getSavedULCQ()
         /// LaunchBrain構造体を作成
         /// LaunchBrain構造体は学習スタートの許可や入力されていない値を入力するように促すラベルの表示を統括
         launchBrain = LaunchBrain(i: 1, l: maxLastCardNumber, m: savedMaxReturnCardsQuantity, u: savedUsualLearningCardsQuantity, s: savedSelectedLevelNumber!,ml: maxLastCardNumber!)
@@ -94,7 +76,6 @@ class LaunchViewController: UIViewController {
         usualLearningCardsQuantityTextField.text = String(savedUsualLearningCardsQuantity!)
         //枠線を設定
         makeInitialInterface()
-        
     }
     
 }

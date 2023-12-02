@@ -41,6 +41,7 @@
 		8270B0D72B18DBE900CD3090 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0D62B18DBE900CD3090 /* CardData.swift */; };
 		8270B0DB2B19914700CD3090 /* extendUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0DA2B19914700CD3090 /* extendUITextField.swift */; };
 		8270B0DF2B1AC37900CD3090 /* HinshColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B0DE2B1AC37900CD3090 /* HinshColor.swift */; };
+		8270B11D2B1B7DD900CD3090 /* GetSavedVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270B11C2B1B7DD900CD3090 /* GetSavedVariables.swift */; };
 		827B208D29E3030B00A49C7D /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208C29E3030B00A49C7D /* constants.swift */; };
 		827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B208E29E651C600A49C7D /* CardDataAndLogic.swift */; };
 		8295AB8D2960E4F50002B1FC /* CardOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */; };
@@ -109,6 +110,7 @@
 		8270B0D62B18DBE900CD3090 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		8270B0DA2B19914700CD3090 /* extendUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extendUITextField.swift; sourceTree = "<group>"; };
 		8270B0DE2B1AC37900CD3090 /* HinshColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HinshColor.swift; sourceTree = "<group>"; };
+		8270B11C2B1B7DD900CD3090 /* GetSavedVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSavedVariables.swift; sourceTree = "<group>"; };
 		827B208C29E3030B00A49C7D /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		827B208E29E651C600A49C7D /* CardDataAndLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataAndLogic.swift; sourceTree = "<group>"; };
 		8295AB8C2960E4F50002B1FC /* CardOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardOverlayView.xib; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				8270B0D62B18DBE900CD3090 /* CardData.swift */,
 				8270B0DA2B19914700CD3090 /* extendUITextField.swift */,
 				8270B0DE2B1AC37900CD3090 /* HinshColor.swift */,
+				8270B11C2B1B7DD900CD3090 /* GetSavedVariables.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				8270B0D72B18DBE900CD3090 /* CardData.swift in Sources */,
 				827B208F29E651C600A49C7D /* CardDataAndLogic.swift in Sources */,
 				82320C542971C98D00A7FDA3 /* AllWordsViewController.swift in Sources */,
+				8270B11D2B1B7DD900CD3090 /* GetSavedVariables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
