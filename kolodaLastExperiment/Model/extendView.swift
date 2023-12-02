@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+
+
 //MARK: - 特定の辺のみ枠線をつけるための関数 addBorders(...)
 extension UIView {
     
@@ -87,6 +89,40 @@ extension UIView {
             }
             parentResponder = nextResponder
         }
+    }
+}
+
+
+
+extension UIView {
+    func makeCardFrameStackView() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.cornerRadius = 20
+        self.layer.borderWidth = 1
+    }
+    
+    func makeSeeTipButton() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
+    }
+    
+    func makeStaartLearningButton() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 10
+    }
+    
+    func makeLaunchButton() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 20
+    }
+    
+    func makeCenterFrameView() {
+        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
     }
 }
 

@@ -90,14 +90,12 @@ extension AllWordsViewController: UITableViewDataSource {
 extension AllWordsViewController {
     
     func configAppearance() {
-        
         /// LaunchVCをfpcに追加する.
         launchVC = storyboard?.instantiateViewController(withIdentifier: "launch") as? LaunchViewController
         launchVC!.cardDataAndLogic = cardDataAndLogic
         fpc.set(contentViewController: launchVC) /// ここで LaunchVC のインスタンスのViewDidLoad が呼ばれる.
         fpc.addPanel(toParent: self)
         fpc.move(to: .hidden, animated: false)
-        
         /// FloatingPannelの外観を設定する.
         fpc.configLaunchFPC(cardDataAndLogic!)
         ///「スタート」ボタンの外観を設定する.

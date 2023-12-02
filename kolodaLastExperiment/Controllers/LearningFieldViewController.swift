@@ -87,11 +87,12 @@ extension LearningFieldViewController: KolodaViewDelegate {
     
     //MARK: - カードのスワイプ動作の処理を担当
     
+    ///index番目のカードが一番前に表示された時の動作を担当する
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
-        //二つのスイッチを初期化.
+        ///二つのスイッチを初期化.
         answerIsShown = false
         tipIsShown = false
-        //ラベルを更新する.
+        ///ラベルを更新する.
         returnCardQuantityLabel.text = String(cardDataAndLogic!.returnCardQuantity)
         certificatedCardQuantityLabel.text = String(cardDataAndLogic!.certificatedCardQuantity)
         progressNumberLabel.text = String("\(cardDataAndLogic!.progressNumber + 1) / \(cardDataAndLogic!.learningCardQuantity!)")
@@ -103,6 +104,7 @@ extension LearningFieldViewController: KolodaViewDelegate {
         }
     }
     
+    ///index番目のカードガスワイプできるかどうかを決定する
     func koloda(_ koloda: KolodaView, shouldSwipeCardAt index: Int, in direction: SwipeResultDirection) -> Bool {
         print("LFVC_ answerIsShown = \(answerIsShown)")
         if answerIsShown == true {
@@ -111,7 +113,7 @@ extension LearningFieldViewController: KolodaViewDelegate {
             return false
         }
     }
-    //カードがスワイプされた時に発動される。
+    ///カードがスワイプされた時に発動される。
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         ///カードのスワイプ動作を処理する.
         cardDataAndLogic!.swipeProcessing(direction, index, tipIsShown)

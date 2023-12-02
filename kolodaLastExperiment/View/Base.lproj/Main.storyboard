@@ -1085,6 +1085,7 @@
                                                         <rect key="frame" x="15" y="15.5" width="200" height="21.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="62c-wY-mP8"/>
+                                                            <constraint firstAttribute="height" constant="21.5" id="XNQ-61-QY5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1149,7 +1150,6 @@
                     </view>
                     <connections>
                         <outlet property="cardFrameStackView" destination="gSQ-xl-0ll" id="m9m-2K-vhr"/>
-                        <outlet property="cardViewFrame" destination="kJm-1q-T5u" id="nTs-uq-biY"/>
                         <outlet property="centerFrameView" destination="EjC-g0-5iy" id="xpo-Hf-gPo"/>
                         <outlet property="hinshiLabel" destination="oaU-6w-Vg3" id="0In-xc-Gft"/>
                         <outlet property="initalHiraganaLabel" destination="7kH-ir-b1T" id="YfQ-0w-QPe"/>
@@ -1453,7 +1453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udk-b3-mPn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8971" y="821"/>
+            <point key="canvasLocation" x="9910" y="851"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="wWL-7h-guu">
@@ -1881,7 +1881,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1d8-iq-3am" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7317" y="821"/>
+            <point key="canvasLocation" x="8255" y="837"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nid-qC-WtT">
